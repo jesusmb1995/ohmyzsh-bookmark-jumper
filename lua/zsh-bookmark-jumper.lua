@@ -26,7 +26,7 @@ end
 
 local function get_bookmarks()
   if M.bookmarks_cache == nil then
-    M.parse_bookmakrs()
+    parse_bookmakrs()
   end
   return M.bookmarks_cache
 end
