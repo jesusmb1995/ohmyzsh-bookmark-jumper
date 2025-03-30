@@ -22,14 +22,13 @@ local function parse_bookmakrs()
   end
 
   M.bookmarks_cache = bookmarks
-  return bookmarks
 end
 
 local function get_bookmarks()
-  if M.bookmarks_cache ~= nil then
-    return M.bookmarks_cache
+  if M.bookmarks_cache == nil then
+    M.parse_bookmakrs()
   end
-  parse_bookmakrs()
+  return M.bookmarks_cache
 end
 
 -- Function to jump to a bookmark
