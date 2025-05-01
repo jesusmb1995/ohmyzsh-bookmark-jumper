@@ -32,11 +32,15 @@ local function get_bookmarks()
 end
 
 -- Function to jump to a bookmark
-local function jump_to_bookmark(bookmark_name)
+local function jump_to_bookmark(bookmark_name, only_tab)
   local bookmarks = get_bookmarks()
   local path = bookmarks[bookmark_name]
   if path then
-    vim.cmd("cd " .. path)
+    if only_tab then
+      vim.cmd("tcd " .. path)
+    else
+      vim.cmd("cd " .. path)
+    end
     vim.notify("Changed directory to: " .. path, vim.log.levels.INFO)
   else
     vim.notify("Bookmark '" .. bookmark_name .. "' not found. Try updating with :CParse", vim.log.levels.ERROR)
@@ -58,7 +62,13 @@ end
 -- Setup function to define the :C command
 function M.setup()
   vim.api.nvim_create_user_command("J", function(opts)
-    jump_to_bookmark(opts.args)
+    jump_to_bookmark(opts.args, true)
+  end, {
+    nargs = 1, -- Expect exactly one argument (bookmark name)
+    complete = complete_bookmarks, -- Enable autocompletion
+  })
+  vim.api.nvim_create_user_command("Jv", function(opts)
+    jump_to_bookmark(opts.args, true)
   end, {
     nargs = 1, -- Expect exactly one argument (bookmark name)
     complete = complete_bookmarks, -- Enable autocompletion
