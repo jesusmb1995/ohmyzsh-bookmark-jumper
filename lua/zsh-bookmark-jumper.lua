@@ -1,3 +1,4 @@
+-- Released by jesusmb1995 under MIT license
 -- Let’s create a Neovim plugin that integrates with the Zsh zsh-autobookmarks plugin (or similar bookmarking tools like z.sh), allowing you to jump to bookmarked directories using a :C <bookmarkname> command with autocompletion. This plugin will leverage Lazy.nvim for plugin management and interact with Zsh’s bookmark system via shell commands.
 local M = {}
 

@@ -1,0 +1,1 @@
+Quickly jump to any project folder in neovim by typing `:J <bookmark-name>` where the bookmark name can be autocompleted. Requires `ohmyzsh` jump plugin: `https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/jump/README.md`
